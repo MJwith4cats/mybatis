@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mjwoo.mybatis.member.MemberMapper">
+
+    <insert id="createMember" parameterType="com.mjwoo.mybatis.member.MemberSignUpRequestDto">
+        INSERT INTO shop_member (m_mail, m_pw, m_name, m_gender, m_phone, m_reg_date)
+        VALUES (#{m_mail}, #{m_pw}, #{m_name}, #{m_gender}, #{m_phone}, NOW())
+    </insert>
+
+</mapper>
