@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDateTime;
+
 
 @Data
 @Builder
@@ -14,16 +16,15 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 public class Member {
 
-    @Id
-    Long m_id;
-    String m_pw;
-    String m_name;
-    String m_gender;
-    String m_mail;
-    String m_phone;
-    String m_reg_date;
-    String m_mod_date;
-    String m_del_date;
+    private Long m_id;
+    private String m_pw;
+    private String m_name;
+    private String m_gender;
+    private String m_mail;
+    private String m_phone;
+    private LocalDateTime m_reg_date;
+    private LocalDateTime m_mod_date;
+    private LocalDateTime m_del_date;
 
     public Long getM_id() {
         return m_id;
@@ -73,27 +74,27 @@ public class Member {
         this.m_phone = m_phone;
     }
 
-    public String getM_reg_date() {
+    public LocalDateTime getM_reg_date() {
         return m_reg_date;
     }
 
-    public void setM_reg_date(String m_reg_date) {
+    public void setM_reg_date(LocalDateTime m_reg_date) {
         this.m_reg_date = m_reg_date;
     }
 
-    public String getM_mod_date() {
+    public LocalDateTime getM_mod_date() {
         return m_mod_date;
     }
 
-    public void setM_mod_date(String m_mod_date) {
+    public void setM_mod_date(LocalDateTime m_mod_date) {
         this.m_mod_date = m_mod_date;
     }
 
-    public String getM_del_date() {
+    public LocalDateTime getM_del_date() {
         return m_del_date;
     }
 
-    public void setM_del_date(String m_del_date) {
+    public void setM_del_date(LocalDateTime m_del_date) {
         this.m_del_date = m_del_date;
     }
 }

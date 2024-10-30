@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -10,6 +11,9 @@
     <form th:action="@{/member/signUpConfirm}" th:object="${member}" method="post">
         <label for="m_mail">Email:</label>
         <input type="email" id="m_mail" th:field="*{m_mail}" required>
+        <button type="button" id="checkEmail">중복확인</button>
+        <span id="emailError" style="color:red"></span>
+        <span id="emailValid" style="color:green"></span>
         <br>
         <label for="m_pw">Password:</label>
         <input type="password" id="m_pw" th:field="*{m_pw}" required>
@@ -29,7 +33,31 @@
         <input type="submit" value="SUBMIT">
     </form>
 
+    <script>
+        $(document).ready(function() {
+            $('#checkEmail').on('click', function() {
+                const email = $('#m_mail').val();
 
-
+                $.ajax({
+                    type: 'POST',
+                    url: '/member/checkEmail', // 이메일 중복 확인을 위한 URL
+                    data: { m_mail: email },
+                    success: function(response) {
+                        if (response.error) {
+                            $('#emailValid').text('');
+                            $('#emailError').text(response.message); // 오류 메시지 표시
+                        } else {
+                            $('#emailError').text('');
+                            $('#emailValid').text(response.message); // 오류 메시지 클리어
+                            <!--$('#signUpForm').submit(); // 폼 제출-->
+                        }
+                    },
+                    error: function() {
+                        $('#emailError').text('서버 오류가 발생했습니다.'); // 서버 오류 처리
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
