@@ -124,4 +124,16 @@ public class MemberController {
 
         return nextPage;
     }
+
+    //회원정보 수정
+    @GetMapping("/editAccountForm")
+    public String editAccountForm(HttpSession httpSession){
+
+        MemberSignUpRequestDto memberDto =
+                (MemberSignUpRequestDto) httpSession.getAttribute("memberDto");
+
+        String nextPage = "member/edit_account_form";
+
+        return nextPage;
+    }
 }

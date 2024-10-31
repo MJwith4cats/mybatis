@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<h3>모든 회원 조회</h3>
+<div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th>연락처</th>
+            <th>성별</th>
+            <th>이름</th>
+            <th>가입일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="member : ${members}">
+            <td th:text="${member.mMail}"></td>
+            <td th:text="${member.mPhone}"></td>
+            <td th:text="${member.mGender}"></td>
+            <td th:text="${member.mName}"></td>
+            <td th:text="${member.mRegDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

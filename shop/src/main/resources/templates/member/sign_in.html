@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<h3>Sign In Page!</h3>
+<form id="signInForm" th:action="@{/member/signInConfirm}" th:object="${member}" method="post">
+    <label for="mMail">Email:</label>
+    <input type="email" id="mMail" th:field="*{mMail}" required>
+    <label for="mPw">Password:</label>
+    <input type="password" id="mPw" th:field="*{mPw}" required>
+    <span id="pwError" style="color:red"></span>
+    <br>
+    <input type="submit" value="로그인">
+</form>
+
+<!-- 모달 -->
+<div class="modal fade" id="loginFailureModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">로그인 실패</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                비밀번호가 맞지 않습니다.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#signInForm').on('submit', function(event) {
+            event.preventDefault(); // 기본 폼 제출 방지
+
+            const email = $('#mMail').val();
+            const password = $('#mPw').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/member/signInConfirm', // 로그인 처리 URL
+                data: {
+                    mMail: email,
+                    mPw: password
+                }, // 기본 폼 데이터 전송
+                success: function(response) {
+                    if (response.error) {
+                        $('#pwError').text(response.message); // 비밀번호 오류 메시지 표시
+                    } else {
+                        // 로그인 성공 시 리다이렉트
+                        window.location.href = response.redirectUrl; // 리다이렉트 URL
+                    }
+                },
+                error: function() {
+                    $('#pwError').text('서버 오류가 발생했습니다.'); // 서버 오류 처리
+                }
+            });
+        });
+    });
+</script>
+
+
+</body>
+</html>

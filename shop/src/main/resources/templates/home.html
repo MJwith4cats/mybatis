@@ -12,9 +12,16 @@
     </div>
     <ul>
         <li><a th:href="@{/member/signUpForm}">회원가입</a></li>
-        <li><a th:href="@{/member/signInForm}">로그인</a></li>
-        <li><a th:href="@{/member/signOutConfirm}">로그아웃</a></li>
+        <div th:if="${mName != null}">
+            <li><a th:href="@{/member/signOutConfirm}">로그아웃</a></li>
+            <li><a th:href="@{/member/editAccountForm}">회원정보수정</a></li>
+        </div>
+        <div th:unless="${mName != null}">
+            <li><a th:href="@{/member/signInForm}">로그인</a></li>
+        </div>
         <li><a th:href="@{/member/getAllMembers}">모든회원조회</a></li>
+
+
     </ul>
 </body>
 </html>
