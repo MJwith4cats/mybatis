@@ -7,9 +7,13 @@
 </head>
 <body>
     <h3>Welcome</h3>
+    <div th:if="${mName != null}">
+        <h1 th:text="${mName} + '님 환영합니다!'"></h1>
+    </div>
     <ul>
         <li><a th:href="@{/member/signUpForm}">회원가입</a></li>
         <li><a th:href="@{/member/signInForm}">로그인</a></li>
+        <li><a th:href="@{/member/signOutConfirm}">로그아웃</a></li>
         <li><a th:href="@{/member/getAllMembers}">모든회원조회</a></li>
     </ul>
 </body>

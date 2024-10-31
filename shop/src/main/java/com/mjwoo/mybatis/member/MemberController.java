@@ -53,10 +53,10 @@ public class MemberController {
     //이메일 중복 확인
     @PostMapping("/checkEmail")
     @ResponseBody
-    public Map<String, Object> checkEmail(@RequestParam("m_mail") String m_mail) {
+    public Map<String, Object> checkEmail(@RequestParam("m_mail") String mMail) {
         Map<String, Object> response = new HashMap<>();
 
-        if (memberService.isEmailExists(m_mail) != null) {
+        if (memberService.isEmailExists(mMail) != null) {
             response.put("error", true);
             response.put("message", "이미 가입한 이메일이 존재합니다.");
         } else {
@@ -96,22 +96,32 @@ public class MemberController {
     
     //로그인 확인
     @PostMapping("/signInConfirm")
-    public String signInConfirm(@ModelAttribute MemberSignInRequestDto requestDto, HttpSession session) {
-        System.out.println("로그인 폼 확인");
+    @ResponseBody 
+    public Map<String, Object> signInConfirm(@ModelAttribute MemberSignInRequestDto requestDto, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+        Member member = memberService.signInConfirm(requestDto);
 
-        MemberSignInRequestDto signedInDto =
-                (MemberSignInRequestDto) memberService.signInConfirm(requestDto);
-
-        String nextPage = "home";
-
-        if (signedInDto == null) {
-            nextPage = "redirect:/member/sign_in";
+        if (member == null) {
+            response.put("error", true);
+            response.put("message", "비밀번호를 다시 확인해주세요.");
         } else {
-            session.setAttribute("signedInDto", signedInDto);
-            session.setMaxInactiveInterval(60*30);
+            session.setAttribute("signedInDto", member);
+            session.setMaxInactiveInterval(60 * 30);
+            response.put("error", false);
+            response.put("redirectUrl", "/");
         }
+
+        return response; // JSON 응답 반환
+    }
+
+
+    //로그아웃
+    @GetMapping("/signOutConfirm")
+    public String signOutConfirm(HttpSession session) {
+        String nextPage = "redirect:/";
+
+        session.invalidate();
 
         return nextPage;
     }
-
 }

@@ -16,85 +16,85 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Member {
 
-    private Long m_id;
-    private String m_pw;
-    private String m_name;
-    private String m_gender;
-    private String m_mail;
-    private String m_phone;
-    private LocalDateTime m_reg_date;
-    private LocalDateTime m_mod_date;
-    private LocalDateTime m_del_date;
+    private Long mId;
+    private String mPw;
+    private String mName;
+    private String mGender;
+    private String mMail;
+    private String mPhone;
+    private LocalDateTime mRegDate;
+    private LocalDateTime mModDate;
+    private LocalDateTime mDelDate;
 
-    public Long getM_id() {
-        return m_id;
+    public Long getmId() {
+        return mId;
     }
 
-    public void setM_id(Long m_id) {
-        this.m_id = m_id;
+    public void setmId(Long mId) {
+        this.mId = mId;
     }
 
-    public String getM_pw() {
-        return m_pw;
+    public String getmPw() {
+        return mPw;
     }
 
-    public void setM_pw(String m_pw) {
-        this.m_pw = m_pw;
+    public void setmPw(String mPw) {
+        this.mPw = mPw;
     }
 
-    public String getM_name() {
-        return m_name;
+    public String getmName() {
+        return mName;
     }
 
-    public void setM_name(String m_name) {
-        this.m_name = m_name;
+    public void setmName(String mName) {
+        this.mName = mName;
     }
 
-    public String getM_gender() {
-        return m_gender;
+    public String getmGender() {
+        return mGender;
     }
 
-    public void setM_gender(String m_gender) {
-        this.m_gender = m_gender;
+    public void setmGender(String mGender) {
+        this.mGender = mGender;
     }
 
-    public String getM_mail() {
-        return m_mail;
+    public String getmMail() {
+        return mMail;
     }
 
-    public void setM_mail(String m_mail) {
-        this.m_mail = m_mail;
+    public void setmMail(String mMail) {
+        this.mMail = mMail;
     }
 
-    public String getM_phone() {
-        return m_phone;
+    public String getmPhone() {
+        return mPhone;
     }
 
-    public void setM_phone(String m_phone) {
-        this.m_phone = m_phone;
+    public void setmPhone(String mPhone) {
+        this.mPhone = mPhone;
     }
 
-    public LocalDateTime getM_reg_date() {
-        return m_reg_date;
+    public LocalDateTime getmRegDate() {
+        return mRegDate;
     }
 
-    public void setM_reg_date(LocalDateTime m_reg_date) {
-        this.m_reg_date = m_reg_date;
+    public void setmRegDate(LocalDateTime mRegDate) {
+        this.mRegDate = mRegDate;
     }
 
-    public LocalDateTime getM_mod_date() {
-        return m_mod_date;
+    public LocalDateTime getmModDate() {
+        return mModDate;
     }
 
-    public void setM_mod_date(LocalDateTime m_mod_date) {
-        this.m_mod_date = m_mod_date;
+    public void setmModDate(LocalDateTime mModDate) {
+        this.mModDate = mModDate;
     }
 
-    public LocalDateTime getM_del_date() {
-        return m_del_date;
+    public LocalDateTime getmDelDate() {
+        return mDelDate;
     }
 
-    public void setM_del_date(LocalDateTime m_del_date) {
-        this.m_del_date = m_del_date;
+    public void setmDelDate(LocalDateTime mDelDate) {
+        this.mDelDate = mDelDate;
     }
 }

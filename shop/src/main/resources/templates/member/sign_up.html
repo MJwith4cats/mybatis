@@ -9,26 +9,26 @@
 <body>
     <h3>Sign Up Page!</h3>
     <form th:action="@{/member/signUpConfirm}" th:object="${member}" method="post">
-        <label for="m_mail">Email:</label>
-        <input type="email" id="m_mail" th:field="*{m_mail}" required>
+        <label for="mMail">Email:</label>
+        <input type="email" id="mMail" th:field="*{mMail}" required>
         <button type="button" id="checkEmail">중복확인</button>
         <span id="emailError" style="color:red"></span>
         <span id="emailValid" style="color:green"></span>
         <br>
-        <label for="m_pw">Password:</label>
-        <input type="password" id="m_pw" th:field="*{m_pw}" required>
+        <label for="mPw">Password:</label>
+        <input type="password" id="mPw" th:field="*{mPw}" required>
         <br>
-        <label for="m_name">Name:</label>
-        <input type="text" id="m_name" th:field="*{m_name}" required>
+        <label for="mName">Name:</label>
+        <input type="text" id="mName" th:field="*{mName}" required>
         <br>
-        <label for="m_gender">Gender:</label>
-        <select id="m_gender" th:field="*{m_gender}" required>
+        <label for="mGender">Gender:</label>
+        <select id="mGender" th:field="*{mGender}" required>
             <option value="m">male</option>
             <option value="f">female</option>
         </select>
         <br>
-        <label for="m_phone">phone:</label>
-        <input type="text" id="m_phone" th:field="*{m_phone}" required>
+        <label for="mPhone">phone:</label>
+        <input type="text" id="mPhone" th:field="*{mPhone}" required>
         <br>
         <input type="submit" value="SUBMIT">
     </form>
@@ -36,12 +36,12 @@
     <script>
         $(document).ready(function() {
             $('#checkEmail').on('click', function() {
-                const email = $('#m_mail').val();
+                const email = $('#mMail').val();
 
                 $.ajax({
                     type: 'POST',
                     url: '/member/checkEmail', // 이메일 중복 확인을 위한 URL
-                    data: { m_mail: email },
+                    data: { mMail: email },
                     success: function(response) {
                         if (response.error) {
                             $('#emailValid').text('');

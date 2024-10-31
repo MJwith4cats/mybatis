@@ -35,18 +35,17 @@ public class MemberService {
     }
 
 
-    public MemberSignInRequestDto signInConfirm(MemberSignInRequestDto requestDto) {
+    public Member signInConfirm(MemberSignInRequestDto requestDto) {
 
-        MemberSignInRequestDto signedInDto =
-                MemberMapper.findByMailAndPw(requestDto);
+        Member member =
+                memberMapper.selectMember(requestDto);
 
-        if (signedInDto != null) {
-            System.out.println("로그인 성공");
-        } else {
-            System.out.println("로그인 실패");
+        System.out.println("Request DTO: " + requestDto);
+
+        if (member != null && requestDto.getmPw().equals(member.getmPw())) {
+            return member;
         }
-
-        return signedInDto;
+        return null;
 
     }
 }
