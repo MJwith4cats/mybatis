@@ -8,24 +8,24 @@
 </head>
 <body>
 <h3>Account Edit Page!</h3>
-<form th:action="@{/member/editAccountConfirm}" th:object="${memberDto}" method="post">
+<form th:action="@{/member/editAccountConfirm}" method="post">
     <label for="mMail">Email:</label>
-    <input type="email" id="mMail" th:field="*{mMail}" required disabled>
+    <input type="email" id="mMail" th:field="*{member.mMail}" required disabled>
     <br>
     <label for="mPw">Password:</label>
-    <input type="password" id="mPw" th:field="*{mPw}" required>
+    <input type="password" id="mPw" th:field="*{member.mPw}" required>
     <br>
     <label for="mName">Name:</label>
-    <input type="text" id="mName" th:field="*{mName}" required>
+    <input type="text" id="mName" th:field="*{member.mName}" required>
     <br>
     <label for="mGender">Gender:</label>
-    <select id="mGender" th:field="*{mGender}" required>
+    <select id="mGender" th:field="*{member.mGender}" required>
         <option value="m">male</option>
         <option value="f">female</option>
     </select>
     <br>
     <label for="mPhone">phone:</label>
-    <input type="text" id="mPhone" th:field="*{mPhone}" required>
+    <input type="text" id="mPhone" th:field="*{member.mPhone}" required>
     <br>
     <input type="submit" value="SUBMIT">
 </form>

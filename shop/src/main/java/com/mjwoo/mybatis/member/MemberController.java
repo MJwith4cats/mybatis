@@ -100,7 +100,7 @@ public class MemberController {
     public Map<String, Object> signInConfirm(@ModelAttribute MemberSignInRequestDto requestDto, HttpSession session) {
         Map<String, Object> response = new HashMap<>();
         Member member = memberService.signInConfirm(requestDto);
-
+        //Member 대신 Long member의 id를 가져와서 세션에 저장하도록 수정
         if (member == null) {
             response.put("error", true);
             response.put("message", "비밀번호를 다시 확인해주세요.");
@@ -127,10 +127,16 @@ public class MemberController {
 
     //회원정보 수정
     @GetMapping("/editAccountForm")
-    public String editAccountForm(HttpSession httpSession){
+    public String editAccountForm(HttpSession session, Model model){
 
-        MemberSignUpRequestDto memberDto =
-                (MemberSignUpRequestDto) httpSession.getAttribute("memberDto");
+        Member member = (Member) session.getAttribute("signedInDto");
+
+
+        //Member member = memberService.showMember(mMail);
+
+        System.out.println("member : "+member);
+
+        model.addAttribute("member", member);
 
         String nextPage = "member/edit_account_form";
 

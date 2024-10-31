@@ -48,4 +48,8 @@ public class MemberService {
         return null;
 
     }
+
+    public Member showMember(String mMail) {
+        return memberMapper.findByEmail(mMail);
+    }
 }

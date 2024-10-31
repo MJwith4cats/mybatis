@@ -14,4 +14,6 @@ public interface MemberMapper {
     public List<MemberSignUpRequestDto> findAll();
 
     public Member selectMember(MemberSignInRequestDto requestDto);
+
+    Member findByEmail(String mMail);
 }

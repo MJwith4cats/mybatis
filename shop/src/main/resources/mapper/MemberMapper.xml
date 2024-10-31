@@ -21,4 +21,7 @@
         SELECT * FROM shop_member WHERE mMail = #{mMail} AND mPw = #{mPw}
     </select>
 
+    <select id="findByEmail" parameterType="String" resultType ="com.mjwoo.mybatis.member.Member">
+        SELECT * FROM shop_member WHERE mMail=#{mMail}
+    </select>
 </mapper>
