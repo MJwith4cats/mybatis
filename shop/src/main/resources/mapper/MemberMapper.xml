@@ -24,4 +24,10 @@
     <select id="findByEmail" parameterType="String" resultType ="com.mjwoo.mybatis.member.Member">
         SELECT * FROM shop_member WHERE mMail=#{mMail}
     </select>
+
+    <update id ="updateMember" parameterType = "com.mjwoo.mybatis.member.MemberSignInRequestDto">
+        UPDATE shop_member
+        SET mPw = #{mPW}, mName = #{mName}, mPhone = #{mPhone}, mGender = #{mGender}, mModeDate = NOW()
+        WHERE mMail = #{mMail}
+    </update>
 </mapper>

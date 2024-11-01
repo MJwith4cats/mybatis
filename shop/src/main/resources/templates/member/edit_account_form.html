@@ -15,6 +15,10 @@
     <label for="mPw">Password:</label>
     <input type="password" id="mPw" th:field="*{member.mPw}" required>
     <br>
+    <label for="mPwConfirm">Password Confirm:</label>
+    <input type="password" id="mPwConfirm" required>
+    <span id="pwError" style="color:red"></span>
+    <br>
     <label for="mName">Name:</label>
     <input type="text" id="mName" th:field="*{member.mName}" required>
     <br>
@@ -29,6 +33,19 @@
     <br>
     <input type="submit" value="SUBMIT">
 </form>
+
+<script>
+    $('#mPwConfirm').on('focusout', function() {
+            const password = $('#mPw').val();
+            const passwordConfirm = $(this).val();
+
+            if (password !== passwordConfirm) {
+                $('#pwError').text('비밀번호가 일치하지 않습니다.'); // 오류 메시지 표시
+            } else {
+                $('#pwError').text(''); // 오류 메시지 클리어
+            }
+    });
+</script>
 
 </body>
 </html>

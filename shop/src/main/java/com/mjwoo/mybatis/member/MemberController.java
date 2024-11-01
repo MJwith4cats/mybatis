@@ -38,12 +38,12 @@ public class MemberController {
     public String signUpConfirm(@ModelAttribute MemberSignUpRequestDto requestDto, Model model){
         System.out.println("회원가입 완료");
         try{
-
+            memberService.createAccountConfirm(requestDto);
         }catch(IllegalArgumentException ex){
             model.addAttribute("errorMessage", ex.getMessage());
 
         }
-        memberService.createAccountConfirm(requestDto);
+
 
         String nextPage = "home";
 
@@ -131,7 +131,6 @@ public class MemberController {
 
         Member member = (Member) session.getAttribute("signedInDto");
 
-
         //Member member = memberService.showMember(mMail);
 
         System.out.println("member : "+member);
@@ -140,6 +139,20 @@ public class MemberController {
 
         String nextPage = "member/edit_account_form";
 
+        return nextPage;
+    }
+
+    //회원정보 수정 확인
+    @PostMapping("/editAccountConfirm")
+    public String editAccountConfirm(@ModelAttribute MemberSignUpRequestDto requestDto, Model model){
+        log.info("회원정보 수정 확인");
+        String nextPage = "redirect:/";
+
+        try {
+            requestDto = memberService.updateMember(requestDto);
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+        }
         return nextPage;
     }
 }

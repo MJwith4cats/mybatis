@@ -16,4 +16,6 @@ public interface MemberMapper {
     public Member selectMember(MemberSignInRequestDto requestDto);
 
     Member findByEmail(String mMail);
+
+    public MemberSignUpRequestDto updateMember(MemberSignUpRequestDto requestDto);
 }
