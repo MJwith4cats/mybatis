@@ -17,5 +17,8 @@ public interface MemberMapper {
 
     Member findByEmail(String mMail);
 
-    public MemberSignUpRequestDto updateMember(MemberSignUpRequestDto requestDto);
+    public int updateMember(MemberSignUpRequestDto requestDto);
+
+    public MemberSignUpRequestDto getSigningInMember(String mMail);
+
 }

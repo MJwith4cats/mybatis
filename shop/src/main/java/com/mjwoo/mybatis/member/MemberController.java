@@ -144,15 +144,27 @@ public class MemberController {
 
     //회원정보 수정 확인
     @PostMapping("/editAccountConfirm")
-    public String editAccountConfirm(@ModelAttribute MemberSignUpRequestDto requestDto, Model model){
+    public String editAccountConfirm(@ModelAttribute MemberSignUpRequestDto requestDto, HttpSession session){
         log.info("회원정보 수정 확인");
+
         String nextPage = "redirect:/";
 
-        try {
-            requestDto = memberService.updateMember(requestDto);
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", e.getMessage());
+        int result = memberService.updateMember (requestDto);
+
+        if (result > 0) {
+            log.info("잘됐음");
+            MemberSignUpRequestDto SignedInMember  = memberService.getSignedInMember(requestDto.getmMail());
+            session.setAttribute("SignedInMember", SignedInMember);
+            session.setMaxInactiveInterval(60 * 30);
+
+            return nextPage;
+        } else {
+            log.info("실패했음");
+            return nextPage;
         }
-        return nextPage;
     }
+
+    //회원 탈퇴
+//    @PostMapping("deleteAccountConfirm")
+//    public String
 }

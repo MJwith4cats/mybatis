@@ -27,7 +27,12 @@
 
     <update id ="updateMember" parameterType = "com.mjwoo.mybatis.member.MemberSignInRequestDto">
         UPDATE shop_member
-        SET mPw = #{mPW}, mName = #{mName}, mPhone = #{mPhone}, mGender = #{mGender}, mModeDate = NOW()
+        SET mPw = #{mPw}, mName = #{mName}, mPhone = #{mPhone}, mGender = #{mGender}, mModDate = NOW()
         WHERE mMail = #{mMail}
     </update>
+
+    <select id="getSigningInMember" parameterType="String"
+            resultType="com.mjwoo.mybatis.member.MemberSignUpRequestDto">
+        SELECT * FROM shop_member WHERE mMail = #{mMail} AND mPw = #{mPw}
+    </select>
 </mapper>

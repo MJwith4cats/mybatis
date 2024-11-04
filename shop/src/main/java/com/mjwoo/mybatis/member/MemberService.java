@@ -53,13 +53,12 @@ public class MemberService {
         return memberMapper.findByEmail(mMail);
     }
 
-    public MemberSignUpRequestDto updateMember(MemberSignUpRequestDto requestDto) {
-        log.info("호출됨");
-
-        log.info(memberMapper.updateMember(requestDto)); // 리스트의 내용을 콘솔에 출력
-        log.info("서비스 반환");
-
+    public int updateMember(MemberSignUpRequestDto requestDto) {
 
         return memberMapper.updateMember(requestDto);
+    }
+
+    public MemberSignUpRequestDto getSignedInMember(String mMail) {
+        return memberMapper.getSigningInMember(mMail);
     }
 }

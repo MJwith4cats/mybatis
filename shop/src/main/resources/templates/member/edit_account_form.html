@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
+    <style>
+        /* readonly 상태의 입력 필드 스타일 */
+        input[readonly] {
+            background-color: #f0f0f0; /* 배경색을 연한 회색으로 */
+            color: #7a7a7a; /* 텍스트 색상을 회색으로 */
+            border: 1px solid #ccc; /* 경계선 색상 */
+        }
+    </style>
 </head>
 <body>
 <h3>Account Edit Page!</h3>
 <form th:action="@{/member/editAccountConfirm}" method="post">
     <label for="mMail">Email:</label>
-    <input type="email" id="mMail" th:field="*{member.mMail}" required disabled>
+    <input type="email" id="mMail" th:field="*{member.mMail}" required readonly>
     <br>
     <label for="mPw">Password:</label>
     <input type="password" id="mPw" th:field="*{member.mPw}" required>
