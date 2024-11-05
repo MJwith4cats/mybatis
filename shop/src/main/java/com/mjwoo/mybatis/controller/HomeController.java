@@ -1,7 +1,6 @@
-package com.mjwoo.mybatis;
+package com.mjwoo.mybatis.controller;
 
-import com.mjwoo.mybatis.member.Member;
-import com.mjwoo.mybatis.member.MemberSignInRequestDto;
+import com.mjwoo.mybatis.domain.Member;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

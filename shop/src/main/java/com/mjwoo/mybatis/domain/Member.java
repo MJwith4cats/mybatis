@@ -1,11 +1,10 @@
-package com.mjwoo.mybatis.member;
+package com.mjwoo.mybatis.domain;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
@@ -25,6 +24,7 @@ public class Member {
     private LocalDateTime mRegDate;
     private LocalDateTime mModDate;
     private LocalDateTime mDelDate;
+    private int mIsDeleted;
 
     public Long getmId() {
         return mId;
@@ -97,4 +97,5 @@ public class Member {
     public void setmDelDate(LocalDateTime mDelDate) {
         this.mDelDate = mDelDate;
     }
+
 }

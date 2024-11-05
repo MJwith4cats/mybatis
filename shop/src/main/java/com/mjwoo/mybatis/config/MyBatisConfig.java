@@ -26,7 +26,7 @@ import javax.sql.DataSource;
 @Configuration
 @Lazy
 @RequiredArgsConstructor
-@MapperScan(basePackages = {"com.mjwoo.mybatis.member"},
+@MapperScan(basePackages = {"com.mjwoo.mybatis.mapper"},
             annotationClass = org.apache.ibatis.annotations.Mapper.class)
 public class MyBatisConfig {
 

@@ -1,4 +1,4 @@
-package com.mjwoo.mybatis.member;
+package com.mjwoo.mybatis.dto;
 
 import lombok.Data;
 

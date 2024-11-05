@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mjwoo.mybatis.member.MemberMapper">
+<mapper namespace="com.mjwoo.mybatis.mapper.MemberMapper">
 
-    <insert id="createMember" parameterType="com.mjwoo.mybatis.member.MemberSignUpRequestDto">
+    <insert id="createMember" parameterType="com.mjwoo.mybatis.dto.MemberSignUpRequestDto">
         INSERT INTO shop_member (mMail, mPw, mName, mGender, mPhone, mRegDate)
         VALUES (#{mMail}, #{mPw}, #{mName}, #{mGender}, #{mPhone}, NOW())
     </insert>
@@ -16,23 +16,29 @@
         SELECT * FROM shop_member
     </select>
 
-    <select id="selectMember" parameterType="com.mjwoo.mybatis.member.MemberSignInRequestDto"
-            resultType="com.mjwoo.mybatis.member.Member">
+    <select id="selectMember" parameterType="com.mjwoo.mybatis.dto.MemberSignInRequestDto"
+            resultType="com.mjwoo.mybatis.domain.Member">
         SELECT * FROM shop_member WHERE mMail = #{mMail} AND mPw = #{mPw}
     </select>
 
-    <select id="findByEmail" parameterType="String" resultType ="com.mjwoo.mybatis.member.Member">
+    <select id="findByEmail" parameterType="String" resultType ="com.mjwoo.mybatis.domain.Member">
         SELECT * FROM shop_member WHERE mMail=#{mMail}
     </select>
 
-    <update id ="updateMember" parameterType = "com.mjwoo.mybatis.member.MemberSignInRequestDto">
+    <update id ="updateMember" parameterType = "com.mjwoo.mybatis.dto.MemberSignInRequestDto">
         UPDATE shop_member
         SET mPw = #{mPw}, mName = #{mName}, mPhone = #{mPhone}, mGender = #{mGender}, mModDate = NOW()
         WHERE mMail = #{mMail}
     </update>
 
     <select id="getSigningInMember" parameterType="String"
-            resultType="com.mjwoo.mybatis.member.MemberSignUpRequestDto">
+            resultType="com.mjwoo.mybatis.dto.MemberSignUpRequestDto">
         SELECT * FROM shop_member WHERE mMail = #{mMail} AND mPw = #{mPw}
     </select>
+
+    <update id = "withdrawMember" parameterType = "String">
+        UPDATE shop_member
+        SET mIsDelted = 1, mDelDate = NOW()
+        WHERE mMail = #{mMail}
+    </update>
 </mapper>

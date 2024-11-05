@@ -15,7 +15,7 @@
         <div th:if="${mName != null}">
             <li><a th:href="@{/member/signOutConfirm}">로그아웃</a></li>
             <li><a th:href="@{/member/editAccountForm}">회원정보수정</a></li>
-            <li><p th:text="@{/member/deleteAccountConfirm}" >회원탈퇴</p></li>
+            <li><a th:href="@{/member/withdrawAccountConfirm}">회원탈퇴</a></li>
         </div>
         <div th:unless="${mName != null}">
             <li><a th:href="@{/member/signInForm}">로그인</a></li>

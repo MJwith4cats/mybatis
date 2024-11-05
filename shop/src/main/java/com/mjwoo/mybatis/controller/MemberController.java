@@ -1,5 +1,10 @@
-package com.mjwoo.mybatis.member;
+package com.mjwoo.mybatis.controller;
 
+import com.mjwoo.mybatis.domain.Member;
+import com.mjwoo.mybatis.dto.MemberWithdrawRequestDto;
+import com.mjwoo.mybatis.service.MemberService;
+import com.mjwoo.mybatis.dto.MemberSignInRequestDto;
+import com.mjwoo.mybatis.dto.MemberSignUpRequestDto;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -164,7 +169,29 @@ public class MemberController {
         }
     }
 
-    //회원 탈퇴
-//    @PostMapping("deleteAccountConfirm")
-//    public String
+//    회원 탈퇴
+    @DeleteMapping("withdrawAccountConfirm")
+    public String deleteAccountConfirm(HttpSession session) {
+        log.info("soft delete 회원탈퇴");
+
+        String mMail  = (String) session.getAttribute("SignedInMember");
+
+        //회원을 찾고
+        //그 회원의 isDeleted컬럼과 mDelDate를 추가하기
+
+        int result = -1;
+
+        result = memberService.withdrawMember(mMail);
+        if (result > 0) {
+            log.info("탈퇴완성");
+            session.invalidate();
+        } else {
+            log.info("아니");
+        }
+
+
+        String nextPage = "redirect:/";
+
+        return nextPage;
+    }
 }
